@@ -1,7 +1,10 @@
 package lubl;
 
-import lombok.LombokUserData;
+import models.RequestCreate;
+import models.User;
+import models.UserData;
 import org.junit.jupiter.api.Test;
+import sun.net.ftp.FtpDirEntry;
 
 import static io.restassured.RestAssured.given;
 import static lubl.Specs.*;
@@ -56,16 +59,16 @@ public class ApiTests {
 
     @Test
     void createUser() {
-        LombokUserData data = (LombokUserData) given()
+        given()
                 .spec(request)
                 .body(body)
                 .when()
                 .post("/users")
                 .then()
                 .spec(response201)
-                .extract().as(LombokUserData.class);
-        assertEquals(name, data.getUser().getName());
-        assertEquals(job, data.getUser().getJob());
+                .extract().as(UserData.class);
+        assertEquals(name, UserData.getUser().getName());
+        assertEquals(job, UserData.getUser().getJob());
     }
 
     @Test
@@ -101,5 +104,22 @@ public class ApiTests {
                 .body("data.findAll{it.email =~/.*?@reqres.in/}.email.flatten()",
                         hasItem("eve.holt@reqres.in"));
         // @formatter:on
+    }
+
+    @Test
+    void morpheusWhoPost() {
+        RequestCreate requestCreate = new RequestCreate();
+        requestCreate.setJob("leader");
+        requestCreate.setName("morpheus");
+                given()
+                        .spec(request)
+                        .body(requestCreate)
+                        .when()
+                .post("/users")
+                .then()
+                .spec(response201)
+                .extract().as(UserData.class);
+        assertEquals(name, UserData.getUser().getName());
+        assertEquals(job, UserData.getUser().getJob());
     }
 }

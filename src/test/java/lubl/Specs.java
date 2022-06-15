@@ -15,6 +15,12 @@ public class Specs {
             .log().all()
             .contentType(ContentType.JSON)
             ;
+    public static RequestSpecification request1 = with()
+            .baseUri("https://reqres.in")
+            .basePath("/api")
+            .log().all()
+            .contentType(ContentType.JSON)
+            ;
 
     public static ResponseSpecification responseSpec = new ResponseSpecBuilder()
             .expectStatusCode(200)
@@ -25,7 +31,7 @@ public class Specs {
             .build();
     public static ResponseSpecification response201 = new ResponseSpecBuilder()
             .expectStatusCode(201)
-            .expectBody(containsString ("morpheus"))
+            //.expectBody(containsString ("morpheus"))
             .build();
     public static ResponseSpecification response204 = new ResponseSpecBuilder()
             .expectStatusCode(204)
