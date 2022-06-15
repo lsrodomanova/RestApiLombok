@@ -107,7 +107,7 @@ public class ApiTests {
     }
 
     @Test
-    void morpheusWhoPost() {
+    void createNewUser() {
         RequestCreate requestCreate = new RequestCreate();
         requestCreate.setJob("leader");
         requestCreate.setName("morpheus");
