@@ -8,10 +8,10 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
     private Integer id;
-    private static String createdAt;
-    private static String name;
-    private static String job;
-    private static String email;
+    private String createdAt;
+    private String name;
+    private String job;
+    private String email;
     @JsonProperty("first_name")
     private String firstName;
     @JsonProperty("last_name")

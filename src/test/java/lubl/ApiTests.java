@@ -1,10 +1,8 @@
 package lubl;
 
 import models.RequestCreate;
-import models.User;
 import models.UserData;
 import org.junit.jupiter.api.Test;
-import sun.net.ftp.FtpDirEntry;
 
 import static io.restassured.RestAssured.given;
 import static lubl.Specs.*;
