@@ -57,7 +57,7 @@ public class ApiTests {
 
     @Test
     void createUser() {
-        given()
+        UserData data= given()
                 .spec(request)
                 .body(body)
                 .when()
@@ -65,8 +65,8 @@ public class ApiTests {
                 .then()
                 .spec(response201)
                 .extract().as(UserData.class);
-        assertEquals(name, UserData.getUser().getName());
-        assertEquals(job, UserData.getUser().getJob());
+        assertEquals(name, data.getName());
+        assertEquals(job, data.getJob());
     }
 
     @Test
@@ -109,7 +109,7 @@ public class ApiTests {
         RequestCreate requestCreate = new RequestCreate();
         requestCreate.setJob("leader");
         requestCreate.setName("morpheus");
-                given()
+        UserData data= given()
                         .spec(request)
                         .body(requestCreate)
                         .when()
@@ -117,7 +117,7 @@ public class ApiTests {
                 .then()
                 .spec(response201)
                 .extract().as(UserData.class);
-        assertEquals(name, UserData.getUser().getName());
-        assertEquals(job, UserData.getUser().getJob());
+        assertEquals(name, data.getName());
+        assertEquals(job, data.getJob());
     }
 }
